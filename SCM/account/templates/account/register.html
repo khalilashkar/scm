@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block title %}Create an account{% endblock %}
+{% block content %}
+
+<div class="container text-center">
+
+
+    <h1 class="row text-uppercase justify-content-center loader">
+        <span style="--i:1;">c</span>
+        <span style="--i:2;">r</span>
+        <span style="--i:3;">e</span>
+        <span style="--i:4;">a</span>
+        <span style="--i:5;">t</span>
+        <span style="--i:6;">e</span>
+        <span style="--i:7;">&nbsp</span>
+        <span style="--i:8;">a</span>
+        <span style="--i:9;">n</span>
+        <span style="--i:10;">&nbsp</span>
+        <span style="--i:11;">a</span>
+        <span style="--i:12;">c</span>
+        <span style="--i:13;">c</span>
+        <span style="--i:14;">o</span>
+        <span style="--i:15;">u</span>
+        <span style="--i:16;">n</span>
+        <span style="--i:17;">t</span>
+
+    </h1>
+
+
+
+    <form action="." method="post" class="form-signin form_login_account change-color">
+        <p>Please, sign up using the following form:</p>
+        {% csrf_token %}
+        <!-- {{ user_form.as_p }} -->
+        <!-- <hr>  -->
+
+
+        {% if user_form.errors %}
+        <div class="alert alert-danger alert-dismissible col-12" role="alert">
+            <div id="form_errors">
+
+                {% for key, value in user_form.errors.items %}
+                <span class="fieldWrapper">
+                    {{ key }}:{{ value }}
+                </span>
+                {% endfor %}
+            </div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% elif formset.total_error_count %}
+        <div class="alert alert-danger alert-dismissible col-12 mx-1" role="alert">
+            {% endif %}
+
+            <div class="form-group">
+                {{ user_form.username.label_tag }}
+                {{ user_form.username|add_class:'form-controler'  }}
+                <span class="helptext">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</span>
+            </div>
+
+            <div class="form-group">
+                {{ user_form.first_name.label_tag }}
+                {{ user_form.first_name|add_class:'form-controler'  }}
+            </div>
+
+            <div class="form-group">
+                {{ user_form.email.label_tag }}
+                {{ user_form.email|add_class:'form-controler'  }}
+            </div>
+
+            <div class="form-group">
+                {{ user_form.password.label_tag }}
+                {{ user_form.password|add_class:'form-controler'  }}
+            </div>
+
+            <div class="form-group">
+                {{ user_form.password2.label_tag }}
+                {{ user_form.password2|add_class:'form-controler'  }}
+            </div>
+
+            <!-- <p><input type="submit" value="Create my account"></p> -->
+            <div class="form-group">
+                <input type="hidden" name="next" value="{{ next }}" />
+                <button class="btn btn-color btn-block" type="submit">
+                    <span class="row w-20 pl-3 pr-3 justify-content-center  btn-loader">
+                        <span style="--i:1;">c</span>
+                        <span style="--i:2;">r</span>
+                        <span style="--i:3;">e</span>
+                        <span style="--i:4;">a</span>
+                        <span style="--i:5;">t</span>
+                        <span style="--i:6;">e</span>
+                        <span style="--i:7;">&nbsp</span>
+                        <span style="--i:8;">m</span>
+                        <span style="--i:9;">y</span>
+                        <span style="--i:10;">&nbsp</span>
+                        <span style="--i:11;">a</span>
+                        <span style="--i:12;">c</span>
+                        <span style="--i:13;">c</span>
+                        <span style="--i:14;">o</span>
+                        <span style="--i:15;">u</span>
+                        <span style="--i:16;">n</span>
+                        <span style="--i:17;">t</span>
+                    </span>
+                </button>
+            </div>
+    </form>
+
+</div>
+
+{% endblock %}

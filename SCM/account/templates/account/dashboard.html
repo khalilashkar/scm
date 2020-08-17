@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- <h1>Dashboard</h1> -->
+
+    <h1 class="row justify-content-left loader">
+        <span style="--i:1;">D</span>
+        <span style="--i:2;">A</span>
+        <span style="--i:3;">S</span>
+        <span style="--i:4;">H</span>
+        <span style="--i:5;">B</span>
+        <span style="--i:6;">O</span>
+        <span style="--i:7;">A</span>
+        <span style="--i:8;">R</span>
+        <span style="--i:9;">D</span>
+    </h1>
+
+
+    <div class="row">
+        <aside class="aside_db col-sm-12 col-md-6 col-lg-3 change-color">
+            <a href="{% url "password_change" %}" class="btn btn-color btn-block">
+                <span class="row justify-content-center btn-loader">
+                    <span style="--i:1;">c</span>
+                    <span style="--i:2;">h</span>
+                    <span style="--i:3;">a</span>
+                    <span style="--i:4;">n</span>
+                    <span style="--i:5;">g</span>
+                    <span style="--i:6;">e</span>
+                    <span style="--i:7;">&nbsp</span>
+                    <span style="--i:8;">y</span>
+                    <span style="--i:9;">o</span>
+                    <span style="--i:10;">u</span>
+                    <span style="--i:11;">r</span>
+                    <span style="--i:12;">&nbsp</span>
+                    <span style="--i:13;">p</span>
+                    <span style="--i:14;">a</span>
+                    <span style="--i:15;">s</span>
+                    <span style="--i:16;">s</span>
+                    <span style="--i:17;">w</span>
+                    <span style="--i:18;">o</span>
+                    <span style="--i:19;">r</span>
+                    <span style="--i:20;">d</span>
+                </span>
+            </a>
+            <a href="{% url "formula:add" %}" class="btn btn-color btn-block">
+                <span class="row justify-content-center btn-loader">
+                    <span style="--i:1;">f</span>
+                    <span style="--i:2;">i</span>
+                    <span style="--i:3;">l</span>
+                    <span style="--i:4;">l</span>
+                    <span style="--i:5;">&nbsp</span>
+                    <span style="--i:6;">a</span>
+                    <span style="--i:7;">n</span>
+                    <span style="--i:8;">&nbsp</span>
+                    <span style="--i:9;">a</span>
+                    <span style="--i:10;">p</span>
+                    <span style="--i:11;">p</span>
+                    <span style="--i:12;">l</span>
+                    <span style="--i:13;">i</span>
+                    <span style="--i:14;">c</span>
+                    <span style="--i:15;">a</span>
+                    <span style="--i:16;">t</span>
+                    <span style="--i:17;">i</span>
+                    <span style="--i:18;">o</span>
+                    <span style="--i:19;">n</span>
+                </span>
+            </a>
+        </aside>
+        <article class="col-sm-12 col-md-6 col-lg-9">
+            <h2 class="h2-margin">Welcome to your dashboard </h2>
+            <p>بعد العام 2016 كانت المعطيات الميدانية على الأرض قد تغيرت إلى حد كبير وتكاثرت سلطات الأمر الواقع وتضاعفت أعداد العاملين/ات في الحقل الإعلامي وتوسعت معها الاحتياجات وتضاعف الدور المنوط بالمنظمات المدنية الداعمة للعمل الإعلامي وهو ما دفع المركز للعمل بشكل موسع على قضايا الدعم، وطوّر أدواته لينشأ برنامج (بيت الصحفي) الذي عمل على تسريع عملية دعم الصحفيين/ات والمرتبطين/ات بوسائل الإعلام ومنع الازدواجية في تقديم الدعم لنفس المستفيد/ ة، وذلك عبر مراجعة الحالات التي تحتاج إلى الدعم وتتقدّم بطلب دعم عبر استمارة موجودة على موقع المركز، والتحقق بشكل أساسي من نقطتين هما الأكثر جوهرية: ألا وهما أوّلاً أنّ الشخص صاحب الطلب هو صحفي/ة أو إعلامي/ة أو مرتبط/ة بوسيلة إعلام من خلال صيغة تعاقدية، وثانياً أنّ طلبه/ ا مرتبط بعمله/ ا الإعلامي، حيث أنّ هذان هما المعياران الأساسيان لدى جميع المنظمات المحلية والدولية، بالإضافة إلى معايير أخرى تختلف من مؤسسة إلى أخرى وكذلك بالنسبة للمركز السوري للإعلام وحريّة التعبير. 
+                إنّ المركز كمؤسسة سورية وعبر مختلف برامجه في قسم الإعلام يبذل أقصى جهده في إيصال صوت الصحفيين/ات السوريين/ات إلى منظمات تعمل من أجل الصحفيين في مختلف دول العالم وتتعامل مع عشرات الحالات المختلفة يومياً والتي يتم معها مشاركة الاستمارة التالية
+                
+                *ملاحظة: لا يمكن لفريق الدعم التواصل إلاّ مع صاحب العلاقة مباشرة ولا نستطيع قبول الحالات التي يتم ملئ الاستمارة من قبل أشخاص بالنيابة عن آخرين.</p>
+        </article>
+    </div>
+
+
+
+</div>
+{% endblock %}

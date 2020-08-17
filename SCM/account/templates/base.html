@@ -1,0 +1,163 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>{% block title %}SCM{% endblock %}</title>
+
+  <!-- </head> -->
+  <!-- <link href="{% static 'css/bootstrap-datetimepicker.min.css' %}" rel="stylesheet"> -->
+  <!-- <script src="{% static 'js/jquery-3.1.1.js' %}"></script> -->
+  <!-- <script src="{% static 'js/bootstrap.min.js' %}"></script> -->
+  <!-- <script src="{% static 'js/moment-master/min/moment.min.js' %}"></script> -->
+  <!-- <script src="{% static 'js/bootstrap-datetimepicker.min.js' %}"></script> -->
+
+  <!-- <head> -->
+  <!-- <title>Mon site</title> -->
+
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/bootstrap/3.3.6/css/bootstrap-theme.min.css"> -->
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link href="{% static "css/base_2.css" %}" rel="stylesheet">
+
+  <!-- <script src="https://code.jquery.com/jquery-git.js"></script>
+  <script src="//cdn.jsdelivr.net/jquery/2.2.3/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+   -->
+
+
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+  </script>
+
+  {% block head-javascript %}{% endblock %}
+</head>
+
+
+
+<body>
+
+  <header id="header">
+
+
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <a class="navbar-brand" href="#">SCM</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+
+          {% if request.user.is_authenticated %}
+          <li class="nav-item" {% if section == "dashboard" %}class="selected" {% endif %}>
+            <a class="nav-link" href="{% url "dashboard" %}">My dashboard <span class="sr-only">(current)</span></a>
+          </li>
+
+          <li class="nav-item" {% if section == "images" %}class="selected" {% endif %}>
+            <a class="nav-link" href="#">images <span class="sr-only">(current)</span></a>
+          </li>
+
+          <li class="nav-item" {% if section == "people" %} {% endif %}>
+            <a class="nav-link" href="#">people <span class="sr-only">(current)</span></a>
+          </li>
+          {% endif %}
+
+
+
+
+        </ul>
+
+        <ul class="navbar-nav mr-auto ul_log float-lg-right">
+
+          {% if request.user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link inactiveLink" href="#" onclick="return false">Hello {{ request.user.first_name }},</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url "logout" %}">Logout <span class="sr-only">(current)</span></a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url "login" %}">Log-in <span class="sr-only">(current)</span></a>
+          </li>
+          {% endif %}
+        </ul>
+        <!--         
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form> -->
+      </div>
+    </nav>
+
+
+
+
+
+
+
+
+    <!-- <span class="logo">SCM</span> -->
+    <!--
+    {% if request.user.is_authenticated %}
+    <ul class="menu">
+      <li {% if section == "dashboard" %}class="selected" {% endif %}>
+        <a href="{% url "dashboard" %}">My dashboard</a>
+      </li>
+      <li {% if section == "images" %}class="selected" {% endif %}>
+        <a href="#">Images</a>
+      </li>
+      <li {% if section == "people" %}class="selected" {% endif %}>
+        <a href="#">People</a>
+      </li>
+    </ul>
+    {% endif %}
+
+    <span class="user">
+      {% if request.user.is_authenticated %}
+      Hello {{ request.user.first_name }},
+      <a href="{% url "logout" %}">Logout</a>
+      {% else %}
+      <a href="{% url "login" %}">Log-in</a>
+      {% endif %}
+    </span>
+ -->
+
+  </header>
+  {% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+    <li class="{{ message.tags }}">
+      {{ message|safe }}
+      <a href="#" class="close">x</a>
+    </li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  <div id="content">
+    {% block content %}
+    {% endblock %}
+  </div>
+
+
+  {% block foot-javascript %}{% endblock %}
+</body>
+
+</html>

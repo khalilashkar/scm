@@ -1,0 +1,124 @@
+{% extends "../base.html" %}
+{% load crispy_forms_tags %}
+{% crispy RegistrationForm %}
+
+{{ form.hot_flow_type }}
+
+{% block head-javascript %}
+
+{{ form.media }}
+
+{% endblock %}
+
+{% block page-header %}
+
+<h1>Application</h1>
+
+{% endblock %}
+
+{% block content %}
+
+<form class=""></form>
+
+{% crispy form %}
+
+{% endblock %}
+
+
+
+
+
+
+
+{% block foot-javascript %}
+<script>
+    $(document).ready(function () {
+        // On interdit le copier/coller du mail
+        $('#id_confirmation_mail').bind('copy paste', function (e) {
+            e.preventDefault();
+
+        });
+        // On affiche le calendrier lorsqu'on clique sur le champ date de naissance
+
+        // On teste la valeur de la date et on la force à vide si elle est mauvaise
+        // $('#id_birth_date').change(function(e){
+        //     e.preventDefault();
+        //     e.stopPropagation();
+        //     var val = $(this).val();
+        //     var format = new RegExp("^\\d{2}\/\\d{2}\/\\d{4}$");
+        //     if(!format.test(val)) {
+        //         $(this).val("");
+        //     }
+        // });
+        // $('#id_start_date').change(function(e){
+        //     e.preventDefault();
+        //     e.stopPropagation();
+        //     var val = $(this).val();
+        //     var format = new RegExp("^\\d{2}\/\\d{2}\/\\d{4}$");
+        //     if(!format.test(val)) {
+        //         $(this).val("");
+        //     }
+        // });
+
+        // Afficher l'onglet suivant en cliquant sur le bouton suivant
+        $('.btnNext').click(function () {
+            $('.nav-tabs > .active + li a').trigger('click');
+            $(".nav-tabs + .tab-content").find(":input:visible:first").focus();
+        });
+        // Afficher l'onglet précédent en cliquant sur le bouton précédent
+        $('.btnPrevious').click(function () {
+            $('.nav-tabs > .active').prev('li').find('a').trigger('click');
+            $(".nav-tabs + .tab-content").find(":input:visible:first").focus();
+        });
+        //add the  other option to the drop down list to enter the new value
+        $(function () {
+            $('#id_city').hide();
+            $('#id_city_options').change(function () {
+                $('#id_city').hide();
+                $('#id_city').val($('#id_city_options').val());
+                if (this.options[this.selectedIndex].value == 'other') {
+                    $('#id_city').show();
+                    $('#id_city').val($('#id_city_options').val());
+
+                }
+            });
+        });
+        //  $(function () {
+        //      $('#id_demander_fullname').hide();
+        //      $('#id_app_owner').change(function () {
+        //          $('#id_demander').val($('#id_app_owner').val());
+        //          if (this.options[this.selectedIndex].value == 'No') {
+        //              $('#id_demander_fullname').show();
+        //              $('#id_demander').val($('#id_app_owner').val());
+
+        //          }
+        //      });
+        //  });
+
+    });
+
+// here is  some java script for the date picker with datatime picker and so we have to reverse all the functione with so we used the version datetime picker plus 
+// jQuery('#id_refer').on('change', function() {
+//     if (this.value == 'other' ) {
+//         jQuery('#id_other').show();
+//     }
+//     else {
+//         jQuery('#id_other').hide();
+//     }
+// }).change();
+// $('#id_birth_date').click(function(){
+//         $(this).parent().data("DateTimePicker").show();
+//     });
+// $('#id_birth_date').change(function(e){
+//         e.preventDefault();
+//         e.stopPropagation();
+//         var val = $(this).val();
+//         var format = new RegExp("^\\d{2}\/\\d{2}\/\\d{4}$");
+//         if(!format.test(val)) {
+//             $(this).val("");
+//         }
+//     });
+
+</script>
+
+{% endblock %}

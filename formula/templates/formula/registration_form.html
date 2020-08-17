@@ -1,0 +1,336 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+{% crispy RegistrationForm %}
+{{ form.hot_flow_type }}
+{% block head-javascript %}
+{{ form.media }}
+{% endblock %}
+
+
+
+{% block content %}
+{% block page-header %}
+<h1>Application</h1>
+
+{% endblock %}
+
+<div class="row">
+
+    {% csrf_token %}
+
+    <!-- {% crispy form_experience %} -->
+    <form class="form-horizontal" id="registration-form" action="" method="post">
+        <div id="exp_form" class="container position-absolute">
+            <div class="row">
+                <div class="col-8">
+                    {{ form_experience.management_form|crispy }}
+                    {% for form in form_experience %}
+                    <div class="form-group">
+                        {{ form.org_name|as_crispy_field }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.job_title|as_crispy_field }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.job_location|as_crispy_field }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.start_date|as_crispy_field }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.until_now|as_crispy_field }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.end_date|as_crispy_field }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.if_salary|as_crispy_field }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.salary|as_crispy_field }}
+                    </div>
+
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% crispy form_register %}
+        <!-- {{form_register|crispy }} -->
+
+        <!-- <input type="submit" value="Save" class="btn btn-success"> -->
+    </form>
+
+
+
+
+
+</div>
+{% endblock %}
+
+
+
+
+
+<!-- ::::::::::: SCRIPT :::::::::::: -->
+{% block foot-javascript %}
+<script>
+    $(document).ready(function () {
+        // On interdit le copier/coller du mail
+        $('#id_confirmation_mail').bind('copy paste', function (e) {
+            e.preventDefault();
+
+        });
+        // On affiche le calendrier lorsqu'on clique sur le champ date de naissance
+
+        // On teste la valeur de la date et on la force à vide si elle est mauvaise
+        // $('#id_birth_date').change(function(e){
+        //     e.preventDefault();
+        //     e.stopPropagation();
+        //     var val = $(this).val();
+        //     var format = new RegExp("^\\d{2}\/\\d{2}\/\\d{4}$");
+        //     if(!format.test(val)) {
+        //         $(this).val("");
+        //     }
+        // });
+        // $('#id_start_date').change(function(e){
+        //     e.preventDefault();
+        //     e.stopPropagation();
+        //     var val = $(this).val();
+        //     var format = new RegExp("^\\d{2}\/\\d{2}\/\\d{4}$");
+        //     if(!format.test(val)) {
+        //         $(this).val("");
+        //     }
+        // });
+
+        // Afficher l'onglet suivant en cliquant sur le bouton suivant
+        $('.btnNext').click(function () {
+            $('.nav-tabs > .active + li a').trigger('click');
+            $(".nav-tabs + .tab-content").find(":input:visible:first").focus();
+        });
+        // Afficher l'onglet précédent en cliquant sur le bouton précédent
+        $('.btnPrevious').click(function () {
+            $('.nav-tabs > .active').prev('li').find('a').trigger('click');
+            $(".nav-tabs + .tab-content").find(":input:visible:first").focus();
+        });
+
+        //add the  other option to the drop down list to enter the new value
+        // $(function () {
+        //     $('#div_id_city').hide();
+        //     $('#id_city_options').change(function () {
+        //         $('#div_id_city').hide();
+        //         $('#id_city').val($('#id_city_options').val());
+        //         if (this.options[this.selectedIndex].value == 'other') {
+        //             $('#div_id_city').show();
+        //             $('#id_city').val($('#id_city_options').val());
+
+        //         }
+        //     });
+        // });
+
+
+
+
+
+        // :::::::: CITY :::::::::::: 
+        $('div#div_id_city').hide();
+        $('#id_country').change(function () {
+            var country = $('#id_country').val();
+            switch (country) {
+                case 'SY':
+                    $('div#div_id_city').show();
+                    break;
+            }
+        });
+
+        // :::::::: PHONE :::::::::::: 
+        $('div#div_id_phone').hide();
+        $('#id_phone_state_inf').change(function () {
+            var country = $('#id_phone_state_inf').val();
+            switch (country) {
+                case '':
+                    $('div#div_id_phone').hide();
+                    break;
+                case '0':
+                    $('div#div_id_phone').hide();
+                    break;
+                case '1':
+                    $('div#div_id_phone').show();
+                    break;
+            }
+        });
+
+        // :::::::: FACEBOOK :::::::::::: 
+        $('div#div_id_facebook').hide();
+        $('#id_facebook_state_inf').change(function () {
+            var country = $('#id_facebook_state_inf').val();
+            switch (country) {
+                case '':
+                    $('div#div_id_facebook').hide();
+                    break;
+                case '0':
+                    $('div#div_id_facebook').hide();
+                    break;
+                case '1':
+                    $('div#div_id_facebook').show();
+                    break;
+            }
+        });
+
+        // :::::::: CURRENT CITY :::::::::::: 
+        $('div#div_id_current_city').hide();
+        $('#id_country_rec').change(function () {
+            var city = $('#id_country_rec').val();
+            switch (city) {
+                case 'SY':
+                    $('div#div_id_current_city').show();
+                    break;
+
+            }
+        });
+
+        // :::::::: MEDICAL INFO :::::::::::: 
+        $('div#div_id_medical_note_inf').hide();
+        $('#id_medical_state_inf').change(function () {
+            var medical = $('#id_medical_state_inf').val();
+            switch (medical) {
+                case '':
+                    $('div#div_id_medical_note_inf').hide();
+                    break;
+                case '1':
+                    $('div#div_id_medical_note_inf').hide();
+                    break;
+                case '0':
+                    $('div#div_id_medical_note_inf').show();
+                    break;
+
+            }
+        });
+
+        /////////////////////// Family status Hide/Show
+        $(
+            "div#div_id_have_kids,div#div_id_number_kids,div#div_id_summary_of_recsituation"
+        ).hide();
+
+        if (
+            $("#id_family_state").val() == "متزوج" ||
+            $("#id_family_state").val() == "أرمل" ||
+            $("#id_family_state").val() == "مطلق"
+        ) {
+            $("div#div_id_have_kids").show();
+            $("div#div_id_summary_of_recsituation").show();
+        }
+
+        $("#id_family_state").change(function () {
+            var family_state = $("#id_family_state").val();
+            switch (family_state) {
+                case "":
+                    $("div#div_id_summary_of_recsituation").hide();
+                    $("div#div_id_have_kids").hide();
+                    $("div#div_id_number_kids").hide();
+                    break;
+                case "عازب":
+                    $("div#div_id_summary_of_recsituation").hide();
+                    $("div#div_id_have_kids").hide();
+                    $("div#div_id_number_kids").hide();
+                    break;
+                case "متزوج":
+                    $("div#div_id_summary_of_recsituation").show();
+                    $("div#div_id_have_kids").show();
+                    break;
+                case "أرمل":
+                    $("div#div_id_summary_of_recsituation").show();
+                    $("div#div_id_have_kids").show();
+                    break;
+                case "مطلق":
+                    $("div#div_id_summary_of_recsituation").show();
+                    $("div#div_id_have_kids").show();
+                    break;
+            }
+        });
+
+        if ($("#id_have_kids").val() == "1") {
+            $("div#div_id_number_kids").show();
+        }
+
+        $("#id_have_kids").change(function () {
+            var have_kids = $("#id_have_kids").val();
+            switch (have_kids) {
+                case "":
+                    $("div#div_id_number_kids").hide();
+                    break;
+                case "1":
+                    $("div#div_id_number_kids").hide();
+                    break;
+                case "0":
+                    $("div#div_id_number_kids").show();
+                    break;
+            }
+        });
+        // ///////////// END FAMILY SATE /////////////
+
+        // ::::::::::::::: WORK ::::::::::::::
+        $('div#div_id_details').hide();
+        $('#id_org_memeber').change(function () {
+            var org = $('#id_org_memeber').val();
+            switch (org) {
+                case '':
+                    $('div#div_id_details').hide();
+                    break;
+                case '1':
+                    $('div#div_id_details').hide();
+                    break;
+                case '0':
+                    $('div#div_id_details').show();
+                    break;
+
+                default:
+                    break;
+            }
+        });
+
+
+
+
+
+
+
+
+        //  $(function () {
+        //      $('#id_demander_fullname').hide();
+        //      $('#id_app_owner').change(function () {
+        //          $('#id_demander').val($('#id_app_owner').val());
+        //          if (this.options[this.selectedIndex].value == 'No') {
+        //              $('#id_demander_fullname').show();
+        //              $('#id_demander').val($('#id_app_owner').val());
+
+        //          }
+        //      });
+        //  });
+
+    });
+
+    // here is  some java script for the date picker with datatime picker and so we have to reverse all the functione with so we used the version datetime picker plus 
+    // jQuery('#id_refer').on('change', function() {
+    //     if (this.value == 'other' ) {
+    //         jQuery('#id_other').show();
+    //     }
+    //     else {
+    //         jQuery('#id_other').hide();
+    //     }
+    // }).change();
+    // $('#id_birth_date').click(function(){
+    //         $(this).parent().data("DateTimePicker").show();
+    //     });
+    // $('#id_birth_date').change(function(e){
+    //         e.preventDefault();
+    //         e.stopPropagation();
+    //         var val = $(this).val();
+    //         var format = new RegExp("^\\d{2}\/\\d{2}\/\\d{4}$");
+    //         if(!format.test(val)) {
+    //             $(this).val("");
+    //         }
+    //     });
+</script>
+
+{% endblock %}
